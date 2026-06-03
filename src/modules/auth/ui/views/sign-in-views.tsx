@@ -11,6 +11,7 @@ import { authClient } from "@/lib/auth-client";
 
 import { Card, CardContent } from '@/components/ui/card'
 import { Field, FieldLabel, FieldError } from "@/components/ui/field"
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Input } from '@/components/ui/input';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -57,7 +58,7 @@ const SignInView = () => {
     const onGoogleSignIn = async () => {
         setError(null);
         await authClient.signIn.social(
-            { provider: "google", callbackURL: "/dashboard" },
+            { provider: "google", callbackURL: "/" },
             { onError: (ctx) => setError(ctx.error.message) }
         );
     };
@@ -65,7 +66,7 @@ const SignInView = () => {
     const onGithubSignIn = async () => {
         setError(null);
         await authClient.signIn.social(
-            { provider: "github", callbackURL: "/dashboard" },
+            { provider: "github", callbackURL: "/" },
             { onError: (ctx) => setError(ctx.error.message) }
         );
     };
@@ -73,13 +74,13 @@ const SignInView = () => {
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
             <Card className="w-full max-w-4xl overflow-hidden bg-[#243d2e] border-emerald-700/50 shadow-2xl shadow-emerald-900/10">
-                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-0 !p-0 items-stretch">
+                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch">
 
                     {/* Left — Form Side */}
                     <div className="p-8 flex flex-col justify-center bg-[#243d2e]">
                         <div className="mb-6">
                             <h1 className="text-2xl font-bold text-white">Welcome back</h1>
-                            <p className="text-emerald-600 text-sm mt-1">
+                            <p className="text-emerald-300 text-sm mt-1">
                                 Login to your account
                             </p>
                         </div>
@@ -101,7 +102,7 @@ const SignInView = () => {
                                 name="email"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel className="text-emerald-300">Email</FieldLabel>
+                                        <FieldLabel className="text-white">Email</FieldLabel>
                                         <Input
                                             type="email"
                                             placeholder="m@example.com"
@@ -122,7 +123,7 @@ const SignInView = () => {
                                 name="password"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel className="text-emerald-300">Password</FieldLabel>
+                                        <FieldLabel className="text-white">Password</FieldLabel>
                                         <Input
                                             type="password"
                                             placeholder="••••••••"
@@ -156,17 +157,19 @@ const SignInView = () => {
 
                         {/* Social Buttons */}
                         <div className="grid grid-cols-2 gap-3">
-                            <Button type="button" variant="outline" className="border-emerald-700 text-emerald-300 hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGoogleSignIn} disabled={loading}>
+                            <Button type="button" variant="outline" className="border-emerald-700 text-white hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGoogleSignIn} disabled={loading}>
+                            <FaGoogle className="mr-2" />
                                 Google
                             </Button>
-                            <Button type="button" variant="outline" className="border-emerald-700 text-emerald-300 hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGithubSignIn} disabled={loading}>
+                            <Button type="button" variant="outline" className="border-emerald-700 text-white hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGithubSignIn} disabled={loading}>
+                              <FaGithub className="mr-2"  />
                                 Github
                             </Button>
                         </div>
 
                         <p className="text-center text-sm mt-4 text-emerald-600">
                             Don&apos;t have an account?{" "}
-                            <Link href="/sign-up" className="text-emerald-400 font-medium hover:underline">
+                            <Link href="/sign-up" className="text-white font-medium hover:underline">
                                 Sign up
                             </Link>
                         </p>
