@@ -6,6 +6,7 @@ import { z } from "zod";
 import Link from 'next/link';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -50,7 +51,7 @@ const SignUpView = () => {
             await authClient.signUp.email(
                 { name: data.name, email: data.email, password: data.password },
                 {
-                    onSuccess: () => { router.push("/dashboard"); },
+                    onSuccess: () => { router.push("/"); },
                     onError: (ctx) => { setError(ctx.error.message); }
                 }
             );
@@ -64,7 +65,7 @@ const SignUpView = () => {
     const onGoogleSignUp = async () => {
         setError(null);
         await authClient.signIn.social(
-            { provider: "google", callbackURL: "/dashboard" },
+            { provider: "google", callbackURL: "/" },
             { onError: (ctx) => setError(ctx.error.message) }
         );
     };
@@ -72,7 +73,7 @@ const SignUpView = () => {
     const onGithubSignUp = async () => {
         setError(null);
         await authClient.signIn.social(
-            { provider: "github", callbackURL: "/dashboard" },
+            { provider: "github", callbackURL: "/" },
             { onError: (ctx) => setError(ctx.error.message) }
         );
     };
@@ -80,7 +81,7 @@ const SignUpView = () => {
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
             <Card className="w-full max-w-4xl overflow-hidden bg-[#243d2e] border-emerald-700/50 shadow-2xl shadow-emerald-900/10">
-                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-0 !p-0 items-stretch">
+                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-0 items-stretch">
 
                     {/* Left — Image Side */}
                     <div className="hidden md:flex flex-col items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600 self-stretch">
@@ -117,7 +118,7 @@ const SignUpView = () => {
                                 name="name"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel className="text-emerald-300">Full Name</FieldLabel>
+                                        <FieldLabel className="text-white">Full Name</FieldLabel>
                                         <Input
                                             type="text"
                                             placeholder="John Doe"
@@ -138,7 +139,7 @@ const SignUpView = () => {
                                 name="email"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel className="text-emerald-300">Email</FieldLabel>
+                                        <FieldLabel className="text-white">Email</FieldLabel>
                                         <Input
                                             type="email"
                                             placeholder="m@example.com"
@@ -159,7 +160,7 @@ const SignUpView = () => {
                                 name="password"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel className="text-emerald-300">Password</FieldLabel>
+                                        <FieldLabel className="text-white">Password</FieldLabel>
                                         <Input
                                             type="password"
                                             placeholder="••••••••"
@@ -180,7 +181,7 @@ const SignUpView = () => {
                                 name="confirmPassword"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel className="text-emerald-300">Confirm Password</FieldLabel>
+                                        <FieldLabel className="text-white">Confirm Password</FieldLabel>
                                         <Input
                                             type="password"
                                             placeholder="••••••••"
@@ -214,17 +215,19 @@ const SignUpView = () => {
 
                         {/* Social Buttons */}
                         <div className="grid grid-cols-2 gap-3">
-                            <Button type="button" variant="outline" className="border-emerald-700 text-emerald-300 hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGoogleSignUp} disabled={loading}>
+                            <Button type="button" variant="outline" className="border-emerald-700 text-white hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGoogleSignUp} disabled={loading}>
+                             <FaGoogle className="mr-2" />
                                 Google
                             </Button>
-                            <Button type="button" variant="outline" className="border-emerald-700 text-emerald-300 hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGithubSignUp} disabled={loading}>
+                            <Button type="button" variant="outline" className="border-emerald-700 text-white hover:bg-emerald-900/30 hover:text-white bg-transparent" onClick={onGithubSignUp} disabled={loading}>
+                              <FaGithub className="mr-2" />
                                 Github
                             </Button>
                         </div>
 
                         <p className="text-center text-sm mt-4 text-emerald-600">
                             Already have an account?{" "}
-                            <Link href="/sign-in" className="text-emerald-400 font-medium hover:underline">
+                            <Link href="/sign-in" className="text-white font-medium hover:underline">
                                 Sign in
                             </Link>
                         </p>
