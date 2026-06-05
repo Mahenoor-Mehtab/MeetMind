@@ -53,9 +53,9 @@ const DashboardUserButton = () => {
 
         {/* Name + Email */}
         <div className="flex flex-col items-start overflow-hidden flex-1 min-w-0">
-          <p className="text-sm font-medium truncate w-full leading-tight">
-            {data.user.name}
-          </p>
+          <p className="text-sm font-medium truncate w-full leading-tight capitalize">
+  {data.user.name}
+</p>
           <p className="text-xs text-muted-foreground truncate w-full leading-tight">
             {data.user.email}
           </p>
@@ -75,7 +75,7 @@ const DashboardUserButton = () => {
         {/* User Info Label */}
         <DropdownMenuLabel className="px-2 py-2">
           <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-medium text-white truncate">{data.user.name}</span>
+            <span className="text-sm font-medium text-white truncate capitalize">{data.user.name}</span>
             <span className="text-xs text-neutral-400 truncate">
               {data.user.email}
             </span>
