@@ -50,8 +50,7 @@ const DashboardSidebar = () => {
         </Link>
       </SidebarHeader>
 
-      <Separator />
-
+     <Separator className="bg-gray-600 h-px w-full opacity-100" />
       {/* Main Content */}
       <SidebarContent className="flex flex-col gap-0">
         {/* First Section — Meetings & Agents */}
@@ -68,7 +67,7 @@ const DashboardSidebar = () => {
                       'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
                       isActive
                         ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                        : 'text-muted-foreground hover:bg-white/10  hover:text-white'
                     )}
                   >
                     <item.icon className="h-4 w-4 shrink-0" />
@@ -80,7 +79,7 @@ const DashboardSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <Separator />
+      <Separator className="bg-gray-600 h-px w-full opacity-100" />
 
         {/* Second Section — Upgrade */}
         <SidebarGroup className="py-3">
@@ -96,7 +95,7 @@ const DashboardSidebar = () => {
                       'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
                       isActive
                         ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                        : 'text-muted-foreground hover:bg-white/10  hover:text-white'
                     )}
                   >
                     <item.icon className="h-4 w-4 shrink-0" />
